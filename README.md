@@ -1,7 +1,3 @@
-# fbtrexvisual.github.io
-visualizations for facebook.tracking.exposed project
-
-
 # Meta-Timeline: a timeline of timelines
 
 Each column represents a specific time you have been on Facebook scrolling, with the first 30 posts that could be seen at the time.
