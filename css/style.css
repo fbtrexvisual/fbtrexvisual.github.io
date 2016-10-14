@@ -4,7 +4,11 @@ body {
 }
 
 .intro {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     margin: 80px 10% 0;
 }
@@ -28,8 +32,7 @@ body {
     text-decoration: none;
 }
 
-.intro-link:visited,
-.intro-link:focus {
+.intro-link:visited, .intro-link:focus {
     color: black;
 }
 
@@ -50,13 +53,17 @@ body {
     height: 2px;
     left: 0;
     position: absolute;
+    -webkit-transform: scaleX(0);
     transform: scaleX(0);
+    -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
+    -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
     width: 100%;
 }
 
 .intro-link:hover::after {
+    -webkit-transform: scaleX(1);
     transform: scaleX(1);
 }
 
@@ -72,8 +79,8 @@ body {
     border: none;
     border-bottom: 1px dashed #414141;
     display: block;
-    font-family : inherit;
-    font-size : 0.9em;
+    font-family: inherit;
+    font-size: 0.9em;
     margin-bottom: 20px;
     width: 272px;
 }
@@ -89,13 +96,17 @@ body {
     height: 2px;
     left: 0;
     position: absolute;
+    -webkit-transform: scaleX(0);
     transform: scaleX(0);
+    -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
+    -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
     width: 274px;
 }
 
 .focussed::after {
+    -webkit-transform: scaleX(1);
     transform: scaleX(1);
 }
 
@@ -104,15 +115,17 @@ body {
     border: 1px solid #9563db;
     border-radius: 2px;
     cursor: pointer;
-    font-family : inherit;
-    font-size : 0.9em;
+    font-family: inherit;
+    font-size: 0.9em;
     height: 28px;
     letter-spacing: 1.1px;
     margin-top: 18px;
     position: relative;
+    -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
     width: 272px;
 }
+
 .intro-input button::before {
     background-color: #9563db;
     bottom: 0;
@@ -120,8 +133,11 @@ body {
     height: 100%;
     left: 0;
     position: absolute;
+    -webkit-transform: scaleX(0);
     transform: scaleX(0);
+    -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
+    -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
     width: 270px;
     z-index: -1;
@@ -132,17 +148,23 @@ body {
 }
 
 .intro-input button:hover::before {
+    -webkit-transform: scaleX(1);
     transform: scaleX(1);
 }
 
 .viz-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     margin: 0 10%;
 }
 
 .legend-box {
     opacity: 0;
+    -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
     width: 50%;
 }
@@ -152,8 +174,14 @@ body {
 }
 
 .legend {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: flex-start;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     margin: 18px 22% 0 0;
 }
@@ -163,23 +191,33 @@ body {
 }
 
 .toggle-box {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
     justify-content: flex-end;
     margin-top: 36px;
     opacity: 0;
+    -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
     width: 50%;
 }
 
 .toggle-slider {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin-left: 62%;
     width: 38%;
 }
 
-.toggle-slider > div {
+.toggle-slider>div {
     border-radius: 11px;
     box-shadow: inset 0 0 1.75px black;
     cursor: pointer;
@@ -194,13 +232,16 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 1px #414141;
     height: 20px;
+    -webkit-transform: translateX(0);
     transform: translateX(0);
+    -webkit-transition: all 0.25s ease;
     transition: all 0.25s ease;
     width: 20px;
 }
 
 .on .toggle-btn {
     background-color: #9563db;
+    -webkit-transform: translateX(16px);
     transform: translateX(16px);
 }
 
@@ -209,32 +250,56 @@ body {
 }
 
 .main {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: flex-start;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     margin: 0 10% 40px;
     width: 80%;
 }
 
 .labels {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: flex-start;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     margin: 40px 10% 0;
     width: 80%;
 }
 
 .container {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
     align-items: flex-start;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     width: 108px;
 }
 
-.timestamp,
-.legend-labels {
+.timestamp, .legend-labels {
     height: 52px;
     text-align: center;
     width: 108px;
@@ -254,6 +319,7 @@ body {
     margin-bottom: 2px;
     position: relative;
     text-align: right;
+    -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
     width: 108px;
 }
@@ -264,6 +330,7 @@ body {
     position: absolute;
     left: -24px;
     top: -5px;
+    -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
     width: 20px;
 }
@@ -280,6 +347,7 @@ body {
     font-size: 0.9em;
     margin: 0;
     opacity: 0;
+    -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
 }
 
