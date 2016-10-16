@@ -203,7 +203,7 @@ function loadTimelines() {
             .attr("data-id", function(d) {
                 if (d.postId === null) {
                     if (d.hasOwnProperty("href")) {
-                        var re = /\n/g,
+                        var re = /['\n]/g,
                             newRef = d.href.replace(re, " ");
                         var finalRef = newRef.replace(/"\sdata-t.*/, "");
                         return finalRef;
