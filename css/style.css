@@ -1,3 +1,18 @@
+@keyframes loading {
+    0%, 100% {
+        transform: scaleY(1);
+        -webkit-transform: scaleY(1);
+    }
+    50% {
+        transform: scaleY(1.6);
+        -webkit-transform: scaleY(1.6);
+    }
+    90% {
+        transform: scaleY(0.8);
+        -webkit-transform: scaleY(0.8);
+    }
+}
+
 body {
     font-family: 'EB Garamond', serif;
     margin: 0;
@@ -71,7 +86,7 @@ body {
     width: 36%;
 }
 
-.intro-input div:first-child {
+.intro-input .input-container:first-child {
     margin-top: 210px;
 }
 
@@ -150,6 +165,33 @@ body {
 .intro-input button:hover::before {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
+}
+
+.loader {
+    height: 24px;
+    margin-left: 119px;
+    margin-top: 20px;
+    opacity: 0;
+    text-align: center;
+    transition: opacity 0.5s ease 0.5s;
+    width: 32px;
+}
+
+.loader-rect {
+    animation: 1s infinite loading;
+    background-color: #9563db;
+    border-radius: 1px;
+    display: inline-block;
+    height: 100%;
+    width: 6px;
+}
+
+.rect2 {
+    animation-delay: 0.1s;
+}
+
+.rect3 {
+    animation-delay: 0.2s;
 }
 
 .viz-header {

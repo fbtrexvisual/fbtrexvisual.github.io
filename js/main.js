@@ -54,9 +54,10 @@ function loadTimelines() {
         //control click behaviour
         var clicked = false;
 
-        //show legend and toggle-slider
+        //show legend and toggle-slider, hide loader
         d3.select(".legend-box").classed("showed", true);
         d3.select(".toggle-box").classed("showed", true);
+        d3.select(".loader").classed("showed", false);
 
         //generate main body and activate toogle-sliders
         var labels = d3.select("body")
@@ -67,6 +68,7 @@ function loadTimelines() {
             .append("div")
             .attr("class", "main"),
 
+        //order by type
             typeToggle = d3.select(".toggle-sort-type")
                 .on("click", function() {
                     var btn = d3.select(this);
@@ -104,6 +106,7 @@ function loadTimelines() {
                     }
                 }),
 
+            //order by creation time
             timeToggle = d3.select(".toggle-sort-time")
                 .on("click", function() {
                     var btn = d3.select(this);
@@ -153,6 +156,7 @@ function loadTimelines() {
                     }
                 }),
 
+            //show additional info on every post
             infoToggle = d3.select(".toggle-info")
                 .on("click", function() {
                     var btn = d3.select(this),
@@ -287,6 +291,8 @@ function loadTimelines() {
                         formatDate = d3.timeFormat("%e %b '%y"),
                         date = formatDate(parse(d.creationTime));
                     return date + ", " + time;
+                } else {
+                    return "Not available";
                 }
             });
 
@@ -295,4 +301,7 @@ function loadTimelines() {
 
 //make API call when button is clicked
 d3.select(".intro-btn")
-    .on("click", loadTimelines);
+    .on("click", function(){
+        d3.select(".loader").classed("showed", true);
+        loadTimelines();
+    });
