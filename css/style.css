@@ -1,3 +1,18 @@
+@-webkit-keyframes loading {
+    0%, 100% {
+        transform: scaleY(1);
+        -webkit-transform: scaleY(1);
+    }
+    50% {
+        transform: scaleY(1.6);
+        -webkit-transform: scaleY(1.6);
+    }
+    90% {
+        transform: scaleY(0.8);
+        -webkit-transform: scaleY(0.8);
+    }
+}
+
 @keyframes loading {
     0%, 100% {
         transform: scaleY(1);
@@ -10,6 +25,100 @@
     90% {
         transform: scaleY(0.8);
         -webkit-transform: scaleY(0.8);
+    }
+}
+
+@-webkit-keyframes pulse {
+    0%, 15%, 45%, 100% {
+        opacity: 0;
+    }
+    22%, 37% {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 15%, 45%, 100% {
+        opacity: 0;
+    }
+    22%, 37% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes move {
+    0%, 15%, 41%, 100% {
+        right: 0;
+    }
+    22%, 36% {
+        right: 7px;
+    }
+}
+
+@keyframes move {
+    0%, 15%, 41%, 100% {
+        right: 0;
+    }
+    22%, 36% {
+        right: 7px;
+    }
+}
+
+@-webkit-keyframes up {
+    0% {
+        bottom: 0;
+    }
+    20% {
+        bottom: 33px;
+    }
+}
+
+@keyframes up {
+    0% {
+        bottom: 0;
+    }
+    20% {
+        bottom: 33px;
+    }
+}
+
+@-webkit-keyframes up02 {
+    0% {
+        bottom: 0;
+    }
+    20% {
+        bottom: 13px;
+    }
+}
+
+@keyframes up02 {
+    0% {
+        bottom: 0;
+    }
+    20% {
+        bottom: 13px;
+    }
+}
+
+@-webkit-keyframes top-up02 {
+    0% {
+        bottom: 0;
+        opacity: 1;
+    }
+    20% {
+        bottom: 13px;
+        opacity: 0;
+    }
+}
+
+@keyframes top-up02 {
+    0% {
+        bottom: 0;
+        opacity: 1;
+    }
+    20% {
+        bottom: 13px;
+        opacity: 0;
     }
 }
 
@@ -30,6 +139,22 @@ body {
 
 .intro-copy {
     width: 44%;
+}
+
+.intro-title {
+    font-family: 'Inconsolata';
+    font-size: 3em;
+    font-weight: 400;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.intro-subtitle {
+    font-size: 1.6em;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-top: 0;
+    margin-bottom: 45px;
 }
 
 .intro-copy p {
@@ -82,12 +207,21 @@ body {
     transform: scaleX(1);
 }
 
-.intro-input {
+.intro-animation {
     width: 36%;
 }
 
+.intro-animation svg {
+    -webkit-transform: scale(1.5);
+    transform: scale(1.5);
+}
+
+.intro-input {
+    margin-left: 72px;
+}
+
 .intro-input .input-container:first-child {
-    margin-top: 210px;
+    margin-top: 40px;
 }
 
 .intro-input input {
@@ -96,7 +230,8 @@ body {
     display: block;
     font-family: inherit;
     font-size: 0.9em;
-    margin-bottom: 20px;
+    /*margin-bottom: 20px;*/
+    margin-bottom: 10px;
     width: 272px;
 }
 
@@ -127,12 +262,12 @@ body {
 
 .intro-input button {
     background-color: transparent;
-    border: 1px solid #9563db;
+    border: 2px solid #9563db;
     border-radius: 2px;
     cursor: pointer;
     font-family: inherit;
     font-size: 0.9em;
-    height: 28px;
+    height: 30px;
     letter-spacing: 1.1px;
     margin-top: 18px;
     position: relative;
@@ -173,11 +308,13 @@ body {
     margin-top: 20px;
     opacity: 0;
     text-align: center;
+    -webkit-transition: opacity 0.5s ease 0.5s;
     transition: opacity 0.5s ease 0.5s;
     width: 32px;
 }
 
 .loader-rect {
+    -webkit-animation: 1s infinite loading;
     animation: 1s infinite loading;
     background-color: #9563db;
     border-radius: 1px;
@@ -187,10 +324,12 @@ body {
 }
 
 .rect2 {
+    -webkit-animation-delay: 0.1s;
     animation-delay: 0.1s;
 }
 
 .rect3 {
+    -webkit-animation-delay: 0.2s;
     animation-delay: 0.2s;
 }
 
@@ -201,18 +340,46 @@ body {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    margin: 0 10%;
+    margin: 80px 10% 0;
 }
 
 .legend-box {
     opacity: 0;
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -webkit-transition: all 0.8s ease;
+    transition: all 0.8s ease;
     width: 50%;
 }
 
 .legend-title {
-    margin: 36px 0 10px;
+    margin: 36px 0 3px;
+}
+
+.legend-copy {
+    display: inline-block;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.legend-rect {
+    -webkit-animation: 12s ease infinite pulse;
+    animation: 12s ease infinite pulse;
+    background-color: #9563db;
+    border: 2px solid #9563db;
+    border-radius: 2px;
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+}
+
+.fa {
+    font-size: 0.9em;
+}
+
+.fa-mouse-pointer {
+    -webkit-animation: 12s ease infinite move;
+    animation: 12s ease infinite move;
+    position: relative;
+    top: 2px;
 }
 
 .legend {
@@ -225,7 +392,7 @@ body {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    margin: 18px 22% 0 0;
+    margin: 14px 22% 0 0;
 }
 
 .legend-labels p {
@@ -246,8 +413,8 @@ body {
     justify-content: flex-end;
     margin-top: 36px;
     opacity: 0;
-    -webkit-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    -webkit-transition: all 0.8s ease;
+    transition: all 0.8s ease;
     width: 50%;
 }
 
@@ -385,6 +552,36 @@ body {
     text-align: center;
 }
 
+.timeline .tooltip {
+    visibility: hidden;
+    width: 210px;
+    background-color: #9563db;
+    color: #fff;
+    text-align: center;
+    padding: 8px;
+    border-radius: 2px;
+    position: absolute;
+    z-index: 1;
+    top: 130%;
+    left: 50%;
+    margin-left: -113px;
+}
+
+.timeline .tooltip::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #9563db transparent;
+}
+
+.timeline:hover .tooltip {
+    visibility: visible;
+}
+
 .post-time {
     font-size: 0.9em;
     margin: 0;
@@ -411,4 +608,64 @@ body {
 
 .showed {
     opacity: 1;
+}
+
+
+/*SVG*/
+
+.mac-fill {
+    fill: #FFFFFF;
+    stroke-width: 2px;
+    stroke: #000000;
+}
+
+.mac-line {
+    fill: none;
+    stroke-width: 2px;
+    stroke: #000000;
+}
+
+.mac-line-round {
+    fill: none;
+    stroke-linecap: round;
+    stroke-width: 2px;
+    stroke: #000000;
+}
+
+.post-background {
+    fill: none;
+    stroke-linecap: round;
+    stroke-width: 2px;
+    stroke: #9563DB;
+}
+
+.background-fill {
+    fill: #9563DB;
+}
+
+#posts {
+    -webkit-clip-path: url(#clip01);
+    clip-path: url(#clip01);
+}
+
+#rects {
+    -webkit-clip-path: url(#clip02);
+    clip-path: url(#clip02);
+}
+
+.post {
+    -webkit-animation: 4s cubic-bezier(0.645, 0.045, 0.355, 1) infinite up;
+    animation: 4s cubic-bezier(0.645, 0.045, 0.355, 1) infinite up;
+    position: relative;
+}
+
+.rect {
+    -webkit-animation: 4s cubic-bezier(0.645, 0.045, 0.355, 1) infinite up02;
+    animation: 4s cubic-bezier(0.645, 0.045, 0.355, 1) infinite up02;
+    position: relative;
+}
+
+.top-rect {
+    -webkit-animation: 4s cubic-bezier(0.645, 0.045, 0.355, 1) infinite top-up02;
+    animation: 4s cubic-bezier(0.645, 0.045, 0.355, 1) infinite top-up02;
 }

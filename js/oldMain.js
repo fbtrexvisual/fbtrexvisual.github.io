@@ -35,21 +35,18 @@ function setFocus(parent) {
 //format time and set transition re-order parameters
 var parse = d3.timeParse("%Y-%m-%dT%H:%M:%S.%LZ"),
     duration = 200,
-    delay = function(d, i) {
-        return i * 25;
-    };
+    delay = function (d,i) {return i * 25;};
 
 //call API
 function loadTimelines() {
-    var fbId = d3.select(".fb-id").property("value");
-    // var refNum = d3.select(".refresh-num").property("value");
+    var fbId = d3.select(".fb-id").property("value"),
+        refNum = d3.select(".refresh-num").property("value");
 
-    if (fbId === "") {
-        fbId = 797500605
-    }
+    if (fbId === "") {fbId = 797500605}
 
     //load json
-    d3.json("data/data10min.json", function(error, data) {
+    d3.json("https://crossorigin.me/https://facebook.tracking.exposed/user/2/timeline/" + fbId + "/14/" + refNum + "/30",
+     function(error, data) {
         if (error) return console.error(error);
 
         //assign correct post order and cut if timelines have more than 25 posts
@@ -72,111 +69,103 @@ function loadTimelines() {
             .append("div")
             .attr("class", "main"),
 
-            //order by type
+        //order by type
             typeToggle = d3.select(".toggle-sort-type")
-            .on("click", function() {
-                var btn = d3.select(this);
-                btn.classed("on", !btn.classed("on"));
+                .on("click", function() {
+                    var btn = d3.select(this);
+                    btn.classed("on", !btn.classed("on"));
 
-                if (btn.classed("on")) {
-                    d3.select(".toggle-sort-time")
-                        .classed("on", false);
+                    if (btn.classed("on")) {
+                        d3.select(".toggle-sort-time")
+                            .classed("on", false);
 
-                    d3.selectAll(".main .container")
-                        .each(function(d, i) {
-                            d3.select(this)
-                                .selectAll(".timeline")
-                                .sort(function(a, b) {
-                                    return d3.descending(a.type, b.type);
-                                })
-                                .transition()
-                                .duration(duration)
-                                .delay(delay)
-                                .style("order", function(d, i) {
-                                    return i
-                                });
-                        });
-                } else {
-                    d3.selectAll(".main .container")
-                        .each(function(d, i) {
-                            d3.select(this)
-                                .selectAll(".timeline")
-                                .sort(function(a, b) {
-                                    return a.order - b.order;
-                                })
-                                .transition()
-                                .duration(duration)
-                                .delay(delay)
-                                .style("order", function(d, i) {
-                                    return d.order
-                                });
-                        });
-                }
-            }),
+                        d3.selectAll(".main .container")
+                            .each(function(d,i) {
+                                d3.select(this)
+                                    .selectAll(".timeline")
+                                    .sort(function(a,b) {
+                                        return d3.descending(a.type, b.type);
+                                    })
+                                    .transition()
+                                    .duration(duration)
+                                    .delay(delay)
+                                    .style("order", function(d,i) {return i});
+                            });
+                    } else {
+                        d3.selectAll(".main .container")
+                            .each(function(d,i) {
+                                d3.select(this)
+                                    .selectAll(".timeline")
+                                    .sort(function(a,b) {
+                                        return a.order - b.order;
+                                    })
+                                    .transition()
+                                    .duration(duration)
+                                    .delay(delay)
+                                    .style("order", function(d,i) {return d.order});
+                            });
+                    }
+                }),
 
             //order by creation time
             timeToggle = d3.select(".toggle-sort-time")
-            .on("click", function() {
-                var btn = d3.select(this);
-                btn.classed("on", !btn.classed("on"));
+                .on("click", function() {
+                    var btn = d3.select(this);
+                    btn.classed("on", !btn.classed("on"));
 
-                if (btn.classed("on")) {
-                    d3.select(".toggle-sort-type")
-                        .classed("on", false);
+                    if (btn.classed("on")) {
+                        d3.select(".toggle-sort-type")
+                            .classed("on", false);
 
-                    d3.selectAll(".main .container")
-                        .each(function(d, i) {
-                            d3.select(this)
-                                .selectAll(".timeline")
-                                .sort(function(a, b) {
-                                    var firstDate,
-                                        secondDate;
-                                    if (a.hasOwnProperty("creationTime")) {
-                                        firstDate = parse(a.creationTime);
-                                    } else {
-                                        firstDate = new Date(1990, 12);
-                                    }
-                                    if (b.hasOwnProperty("creationTime")) {
-                                        secondDate = parse(b.creationTime);
-                                    } else {
-                                        secondDate = new Date(1990, 12);
-                                    }
-                                    return secondDate - firstDate;
-                                })
-                                .transition()
-                                .duration(duration)
-                                .delay(delay)
-                                .style("order", function(d, i) {
-                                    return i
-                                });
-                        });
-                } else {
-                    d3.selectAll(".main .container")
-                        .each(function(d, i) {
-                            d3.select(this)
-                                .selectAll(".timeline")
-                                .sort(function(a, b) {
-                                    return a.order - b.order;
-                                })
-                                .transition()
-                                .duration(duration)
-                                .delay(delay)
-                                .style("order", function(d, i) {
-                                    return d.order
-                                });
-                        });
-                }
-            }),
+                        d3.selectAll(".main .container")
+                            .each(function(d,i) {
+                                d3.select(this)
+                                    .selectAll(".timeline")
+                                    .sort(function(a,b) {
+                                        var firstDate,
+                                            secondDate;
+                                        if (a.hasOwnProperty("creationTime")) {
+                                            firstDate = parse(a.creationTime);
+                                        } else {
+                                            firstDate = new Date(1990, 12);
+                                        }
+                                        if (b.hasOwnProperty("creationTime")) {
+                                            secondDate = parse(b.creationTime);
+                                        } else {
+                                            secondDate = new Date(1990, 12);
+                                        }
+                                        return secondDate - firstDate;
+                                    })
+                                    .transition()
+                                    .duration(duration)
+                                    .delay(delay)
+                                    .style("order", function(d,i) {return i});
+                            });
+                    } else {
+                        d3.selectAll(".main .container")
+                            .each(function(d,i) {
+                                d3.select(this)
+                                    .selectAll(".timeline")
+                                    .sort(function(a,b) {
+                                        return a.order - b.order;
+                                    })
+                                    .transition()
+                                    .duration(duration)
+                                    .delay(delay)
+                                    .style("order", function(d,i) {return d.order});
+                            });
+                    }
+                }),
 
             //show additional info on every post
             infoToggle = d3.select(".toggle-info")
-            .on("click", function() {
-                var btn = d3.select(this),
-                    container = d3.select(".main");
+                .on("click", function() {
+                    var btn = d3.select(this),
+                        container = d3.select(".main");
 
-                btn.classed("on", !btn.classed("on"));
-                container.classed("on", !container.classed("on"));
-            });
+                    btn.classed("on", !btn.classed("on"));
+                    container.classed("on", !container.classed("on"));
+                });
 
         //generate column headers with date and time
         var topContainer = labels.selectAll("div.container")
@@ -304,22 +293,16 @@ function loadTimelines() {
                         date = formatDate(parse(d.creationTime));
                     return date + ", " + time;
                 } else {
-                    return "Promoted, no time";
+                    return "Not available";
                 }
             });
 
     });
 }
 
-
 //make API call when button is clicked
 d3.select(".intro-btn")
-    .on("click", function() {
+    .on("click", function(){
         d3.select(".loader").classed("showed", true);
-        setTimeout(function() {
-            loadTimelines();
-            $('html,body').animate({
-                scrollTop: $(".viz-header").offset().top
-            }, 800)
-        }, 1000);
+        loadTimelines();
     });

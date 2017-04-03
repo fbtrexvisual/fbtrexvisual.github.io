@@ -4,6 +4,8 @@
 <head>
     <title>Realitycheck Viz</title>
     <link href="https://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="css/style.css" rel="stylesheet" type="text/css">
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://cdn.jsdelivr.net/lodash/4.15.0/lodash.min.js"></script>
@@ -12,57 +14,148 @@
 <body>
     <div class="intro">
         <div class="intro-copy">
-            <h1 class="intro-title">Meta-Timeline: a timeline of timelines</h1>
-            <p>Facebook is so present in most people's lives that we tend to forget some of the logics that run it.
-                How does it decides what we get in our newsfeed? <br/>
-                We have no idea, but this is an attempt to shed a small light on it.</p>
+            <h1 class="intro-title">Meta-Timeline</h1>
+            <h2 class="intro-subtitle">A timeline of timelines</h2>
+            <p>Facebook is so present in most people's lives that we tend to forget some of the logics that run it. How does it decides what we get in our newsfeed? <br/> We have no idea, but this is an attempt to shed a small light on it.</p>
             <p>If you have the <a class="intro-link" href="https://facebook.tracking.exposed/#useit">facebook.tracking.exposed script</a> installed, you can choose to see some of the past times (aka <em>refreshes</em>) you have been scrolling Facebook.<br/>
-                Insert your Facebook ID and the number of refreshes you want to compare, up to
-                6. Each column represents a specific time you have been on Facebook scrolling, up to a maximum of 25 posts per session.
-                Hovering or clicking on a post (<em>a rectangle</em>) will highlight whenever that particular post appeared in other occasions.</p>
+                <!-- Insert your Facebook ID and the number of refreshes you want to compare, up to
+                6.  -->
+                In order to get any insight, insert your Facebook ID. Each column represents a specific time you have been on Facebook scrolling, up to a maximum of 25 posts per session. Hovering or clicking on a post (<em>a rectangle</em>) will highlight
+                whenever that particular post appeared in other occasions.</p>
         </div>
-        <div class="intro-input">
-            <div class="input-container" id="id-field">
-                <input class="fb-id" type="text" placeholder="Insert Facebok ID or leave blank to load example" onfocus="setFocus('id-field')"/>
-            </div>
-            <div class="input-container" id="refreshes-field">
-                <input class="refresh-num" type="number" value="6" min="1" max="6" onfocus="setFocus('refreshes-field')"/>
-            </div>
-            <button class="intro-btn" type="button">Load timelines</button>
-            <div class="loader">
-                <div class="loader-rect rect1"/></div>
-                <div class="loader-rect rect2"></div>
-                <div class="loader-rect rect3"></div>
+        <div class="intro-animation">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="410px" height="433px" viewBox="0 0 410 433" xml:space="preserve">
+                <g id="mac">
+                    <polygon points="225.542 355.956 183.463 355.956 189.371 327.322 220.629 327.322 " class="mac-fill"/>
+                    <path d="M279.285 332.035H130.715c-1.177 0-2.131-0.954-2.131-2.131V224.999c0-1.177 0.954-2.131 2.131-2.131h148.571c1.177 0 2.131 0.954 2.131 2.131v104.904C281.416 331.081 280.462 332.035 279.285 332.035z" class="mac-fill"/>
+                    <rect x="137.317" y="231.602" width="135.366" height="74.829" class="mac-line"/>
+                    <line x1="173.382" y1="355.956" x2="235.622" y2="355.956" class="mac-line"/>
+                    <line x1="128.584" y1="315.264" x2="281.416" y2="315.264" class="mac-line"/>
+                    <line x1="159" y1="245.5" x2="175" y2="245.5" class="mac-line-round"/>
+                    <line x1="159" y1="250.5" x2="175" y2="250.5" class="mac-line-round"/>
+                    <line x1="159" y1="255.5" x2="175" y2="255.5" class="mac-line-round"/>
+                    <line x1="159" y1="260.5" x2="175" y2="260.5" class="mac-line-round"/>
+                    <line x1="159" y1="265.5" x2="175" y2="265.5" class="mac-line-round"/>
+                </g>
+                <g id="posts">
+                    <g class="post">
+                        <g>
+                            <path d="M183.995 279.157c-0.55 0-1-0.45-1-1v-26.016c0-0.55 0.45-1 1-1h41.015c0.55 0 1 0.45 1 1v26.016c0 0.55-0.45 1-1 1H183.995z" class="mac-line"/>
+                        </g>
+                        <line x1="194.75" y1="257.5" x2="204.502" y2="257.5" class="post-background"/>
+                        <g>
+                            <path d="M192 259c0 0.55-0.45 1-1 1h-3c-0.55 0-1-0.45-1-1v-3c0-0.55 0.45-1 1-1h3c0.55 0 1 0.45 1 1V259z" class="background-fill"/>
+                        </g>
+                    </g>
+                    <g class="post">
+                        <g>
+                            <path d="M183.995 312.437c-0.55 0-1-0.45-1-1v-26.016c0-0.55 0.45-1 1-1h41.015c0.55 0 1 0.45 1 1v26.016c0 0.55-0.45 1-1 1H183.995z" class="mac-line"/>
+                        </g>
+                        <line x1="194.75" y1="290.5" x2="204.502" y2="290.5" class="post-background"/>
+                        <g>
+                            <path d="M192 292c0 0.55-0.45 1-1 1h-3c-0.55 0-1-0.45-1-1v-3c0-0.55 0.45-1 1-1h3c0.55 0 1 0.45 1 1V292z" class="background-fill"/>
+                        </g>
+                    </g>
+                    <g class="post">
+                        <g>
+                            <path d="M183.995 345.718c-0.55 0-1-0.45-1-1v-26.016c0-0.55 0.45-1 1-1h41.015c0.55 0 1 0.45 1 1v26.016c0 0.55-0.45 1-1 1H183.995z" class="mac-line"/>
+                        </g>
+                        <line x1="194.75" y1="324.5" x2="204.502" y2="324.5" class="post-background"/>
+                        <g>
+                            <path d="M192 326c0 0.55-0.45 1-1 1h-3c-0.55 0-1-0.45-1-1v-3c0-0.55 0.45-1 1-1h3c0.55 0 1 0.45 1 1V326z" class="background-fill"/>
+                        </g>
+                    </g>
+                    <g class="post">
+                        <g>
+                            <path d="M183.995 245.876c-0.55 0-1-0.45-1-1V218.86c0-0.55 0.45-1 1-1h41.015c0.55 0 1 0.45 1 1v26.016c0 0.55-0.45 1-1 1H183.995z" class="mac-line"/>
+                        </g>
+                        <line x1="194.75" y1="224.5" x2="204.502" y2="224.5" class="post-background"/>
+                        <g>
+                            <path d="M192 226c0 0.55-0.45 1-1 1h-3c-0.55 0-1-0.45-1-1v-3c0-0.55 0.45-1 1-1h3c0.55 0 1 0.45 1 1V226z" class="background-fill"/>
+                        </g>
+                    </g>
+                </g>
+                <g id="rects">
+                    <g class="rect">
+                        <path d="M226 225c0 0.552-0.448 1-1 1h-41c-0.552 0-1-0.448-1-1v-8c0-0.552 0.448-1 1-1h41c0.552 0 1 0.448 1 1V225z" class="background-fill"/>
+                    </g>
+                    <g class="rect">
+                        <path d="M226 212c0 0.552-0.448 1-1 1h-41c-0.552 0-1-0.448-1-1v-8c0-0.552 0.448-1 1-1h41c0.552 0 1 0.448 1 1V212z" class="background-fill"/>
+                    </g>
+                    <g class="rect">
+                        <path d="M226 199c0 0.552-0.448 1-1 1h-41c-0.552 0-1-0.448-1-1v-8c0-0.552 0.448-1 1-1h41c0.552 0 1 0.448 1 1V199z" class="background-fill"/>
+                    </g>
+                    <g class="rect">
+                        <path d="M226 186c0 0.552-0.448 1-1 1h-41c-0.552 0-1-0.448-1-1v-8c0-0.552 0.448-1 1-1h41c0.552 0 1 0.448 1 1V186z" class="background-fill"/>
+                    </g>
+                    <g class="rect top-rect">
+                        <path d="M226 173c0 0.552-0.448 1-1 1h-41c-0.552 0-1-0.448-1-1v-8c0-0.552 0.448-1 1-1h41c0.552 0 1 0.448 1 1V173z" class="background-fill"/>
+                    </g>
+                </g>
+                <def>
+                    <clipPath id="clip01">
+                        <rect x="137.317" y="231.602" width="135.366" height="74.829" fill="none"/>
+                    </clipPath>
+                </def>
+                <def>
+                    <clipPath id="clip02">
+                        <rect x="166" y="162" width="76" height="54" fill="none"/>
+                    </clipPath>
+                </def>
+            </svg>
+            <div class="intro-input">
+                <div class="input-container" id="id-field">
+                    <input class="fb-id" type="text" placeholder="Insert Facebok ID or leave blank to load example" onfocus="setFocus('id-field')" />
+                </div>
+                <!-- <div class="input-container" id="refreshes-field">
+                    <input class="refresh-num" type="number" value="6" min="1" max="6" onfocus="setFocus('refreshes-field')"/>
+                </div> -->
+                <button class="intro-btn" type="button">Load timelines</button>
+                <div class="loader">
+                    <div class="loader-rect rect1" /></div>
+                    <div class="loader-rect rect2"></div>
+                    <div class="loader-rect rect3"></div>
+                </div>
             </div>
         </div>
     </div>
     <div class="viz-header">
         <div class="legend-box">
             <h2 class="legend-title">Key:</h2>
+            <div class="legend-rect"></div>
+            <p class="legend-copy"><i class="fa fa-mouse-pointer" aria-hidden="true"></i> Hover on category to know more</p>
             <div class="legend">
                 <div class="container">
-                    <div class="timeline" style="background-color: #81e3ea"></div>
+                    <div class="timeline" style="background-color: #81e3ea">
+                        <span class="tooltip">Posts of activities by you, the pages you liked, the people you follow.</span>
+                    </div>
                     <div class="legend-labels">
                         <p>feed</p>
                     </div>
 
                 </div>
                 <div class="container">
-                    <div class="timeline " style="background-color: #eaea5e"></div>
+                    <div class="timeline" style="background-color: #eaea5e">
+                        <span class="tooltip">Posts of activities by your friends that you wouldn't normally see (such as friends tagged by people you don't know).</span>
+                    </div>
                     <div class="legend-labels">
                         <p>friend link</p>
                     </div>
 
                 </div>
                 <div class="container">
-                    <div class="timeline" style="background-color: #f76f61"></div>
+                    <div class="timeline" style="background-color: #f76f61">
+                        <span class="tooltip">Posts inserted by Facebook as ads.</span>
+                    </div>
                     <div class="legend-labels">
                         <p>promoted</p>
                     </div>
 
                 </div>
                 <div class="container">
-                    <div class="timeline" style="background-color: #414141"></div>
+                    <div class="timeline" style="background-color: #414141">
+                        <span class="tooltip">Posts that could not be retrieved by the tool.</span>
+                    </div>
                     <div class="legend-labels">
                         <p>broken</p>
                     </div>
@@ -93,6 +186,7 @@
         </div>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 
