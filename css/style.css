@@ -128,29 +128,23 @@ body {
 }
 
 .intro {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
     margin: 80px 10% 0;
 }
 
 .intro-copy {
-    width: 44%;
+    width: 100%;
 }
 
 .intro-title {
     font-family: 'Inconsolata';
-    font-size: 3em;
+    font-size: 2.4em;
     font-weight: 400;
     margin: 0;
     text-transform: uppercase;
 }
 
 .intro-subtitle {
-    font-size: 1.6em;
+    font-size: 1.4em;
     font-weight: 400;
     letter-spacing: 1px;
     margin-top: 0;
@@ -208,7 +202,7 @@ body {
 }
 
 .intro-animation {
-    width: 36%;
+    width: 80%;
 }
 
 .intro-animation svg {
@@ -217,7 +211,7 @@ body {
 }
 
 .intro-input {
-    margin-left: 72px;
+    margin-left: 10px;
 }
 
 .intro-input .input-container:first-child {
@@ -668,4 +662,38 @@ body {
 .top-rect {
     -webkit-animation: 4s cubic-bezier(0.645, 0.045, 0.355, 1) infinite top-up02;
     animation: 4s cubic-bezier(0.645, 0.045, 0.355, 1) infinite top-up02;
+}
+
+
+@media (min-width: 768px) {
+    .intro {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+    }
+    .intro-title {
+        font-size: 3em;
+    }
+    .intro-subtitle {
+        font-size: 1.6em;
+    }
+    .intro-animation {
+        width: 36%;
+    }
+    .intro-input {
+        margin-left: 72px;
+    }
+}
+
+@media (min-width: 920px) {
+    .intro-copy {
+        width: 44%;
+    }
+}
+
+@media (min-width: 1200px) {
+    
 }
